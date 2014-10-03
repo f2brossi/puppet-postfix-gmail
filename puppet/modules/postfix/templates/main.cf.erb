@@ -31,7 +31,7 @@ smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 myhostname = <%=@myhostname%>
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-myorigin = /etc/mailname
+#myorigin = /etc/mailname
 mydestination = <%=@mydestination%>
 relayhost = <%=@relayhost%>
 smtp_sasl_auth_enable = yes

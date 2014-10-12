@@ -11,14 +11,12 @@ class postfix::postfix($username, $userpassword) {
 	file { 'conf-saslpassword':
 		path    => '/etc/postfix/saslpassword',
     		ensure  => present,
-    		mode => 0644,
-        	owner => 'root',
-        	group => 'root',
+    		mode => 0400,
+        	owner => 'postfix',
+        	group => 'postfix',
 		content => template('postfix/saslpassword.erb'),
 		require => [Package['postfix'],
 	}
-
-	file {"script_create_saslpassword":
 
 
        file { 'cacert.pem':
@@ -35,7 +33,7 @@ class postfix::postfix($username, $userpassword) {
 	      path => "/usr/sbin/:/usr/bin/",
 	      command => "sudo postmap /etc/postfix/sasl_passwd",
 	      returns => [0],
-	      require => [Exec['update_saslpassword'], File['cacert.pem']],
+	      require => [File['conf-saslpassword'], File['cacert.pem']],
 	  }
   
 	
@@ -44,7 +42,7 @@ class postfix::postfix($username, $userpassword) {
     		ensure  => present,
 		content => template('postfix/main.cf.erb'),
 		notify	=> Service['service-postfix'],
-		require => [Package['postfix'], Exec['update_saslpassword']],
+		require => [Package['postfix'], File['conf-saslpassword']],
 	}
 
 	service { 'service-postfix':

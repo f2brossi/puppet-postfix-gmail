@@ -8,17 +8,18 @@ class postfix::postfix($username, $userpassword) {
 		ensure => present,	
 	}
 
-	file {"script_create_saslpassword":
-	    path    => '/tmp/create_saslpassword.sh',
-	    ensure  => file,
-	    mode    => 500,	
-	    source  => "puppet:///modules/postfix/create_saslpassword.sh",
+	file { 'conf-saslpassword':
+		path    => '/etc/postfix/saslpassword',
+    		ensure  => present,
+    		mode => 0644,
+        	owner => 'root',
+        	group => 'root',
+		content => template('postfix/saslpassword.erb'),
+		require => [Package['postfix'],
 	}
 
-  	exec { "update_saslpassword":
-      		command => "/tmp/create_saslpassword.sh $username $userpassword",
-      		require => File['script_create_saslpassword'],
-    	}
+	file {"script_create_saslpassword":
+
 
        file { 'cacert.pem':
 	        source => "puppet:///modules/postfix/cacert.pem",

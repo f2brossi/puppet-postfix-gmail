@@ -9,7 +9,7 @@ class postfix::postfix($username, $userpassword) {
 	}
 
 	file { 'conf-saslpassword':
-		path    => '/etc/postfix/saslpassword',
+		path    => '/etc/postfix/sasl_password',
     		ensure  => present,
     		mode => 0400,
         	owner => 'postfix',

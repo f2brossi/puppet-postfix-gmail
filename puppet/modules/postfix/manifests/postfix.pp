@@ -14,8 +14,8 @@ class postfix::postfix($username, $userpassword) {
     		mode => 0400,
         	owner => 'postfix',
         	group => 'postfix',
-		content => template('postfix/saslpassword.erb'),
-		require => [Package['postfix'],
+		content => template('postfix/sasl_password.erb'),
+		require => [Package['postfix']],
 	}
 
 
@@ -32,7 +32,7 @@ class postfix::postfix($username, $userpassword) {
        exec { 'run_postmap':
 	      path => "/usr/sbin/:/usr/bin/",
 	      command => "sudo postmap /etc/postfix/sasl_passwd",
-	      returns => [0],
+	      returns => [0, 1],
 	      require => [File['conf-saslpassword'], File['cacert.pem']],
 	  }
   

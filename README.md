@@ -8,7 +8,9 @@ NB: No more than 500 mails a day are authorized.
 
 ## Quick Start with Vagrant
 
-After installing the vagrant plugin for openstack, 
+First update the file puppet/init-postfix.pp with your gmail credentials then
+
+after installing the vagrant plugin for openstack, 
 
 ```
 $ vagrant plugin install vagrant-openstack-provider

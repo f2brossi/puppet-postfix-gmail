@@ -13,6 +13,7 @@ After installing the vagrant plugin for openstack,
 ```
 $ vagrant plugin install vagrant-openstack-provider
 ...
+```
 
 you need to specify all the details manually within a `config.vm.provider` block in the Vagrantfile
 

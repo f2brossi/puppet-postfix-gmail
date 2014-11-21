@@ -33,9 +33,7 @@ vagrant will authenticate against the UK authentication endpoint.
 
 ### VM Configuration
 
-* `server_name` - The name of the server within Openstack Cloud. This
-  defaults to the name of the Vagrant machine (via `config.vm.define`), but
-  can be overridden with this.
+* `server_name` - The name of the server within Openstack Cloud. 
 * `flavor` - The name of the flavor to use for the VM
 * `image` - The name of the image to use for the VM
 

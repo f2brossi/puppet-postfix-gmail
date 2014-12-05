@@ -1,26 +1,23 @@
 puppet-postfix-gmail
 ====================
 
-Puppet Configuring Postfix to Use Gmail SMTP on Ubuntu 
+Puppet + Vagrant for configuring Postfix to Use Gmail SMTP on Ubuntu 
 
 NB: No more than 500 mails a day are authorized.
 
 
-## Quick Start with Vagrant
+## Quick Start with Vagrant openstack provider
 
-First update the file puppet/init-postfix.pp with your gmail credentials then
-
-after installing the vagrant plugin for openstack, 
+Install the vagrant plugin for openstack, 
 
 ```
 $ vagrant plugin install vagrant-openstack-provider
 ...
 ```
 
-you need to specify all the details manually within a `config.vm.provider` block in the Vagrantfile
+Within the Vagrantfile, specify your openstack credentials, your vm configuration and your gmail credentials
 
-And then run `vagrant up --provider=openstack`.
-
+And finally run `vagrant up --provider=openstack`.
 
 ### Openstack Credentials
 
@@ -39,14 +36,8 @@ vagrant will authenticate against the UK authentication endpoint.
 * `flavor` - The name of the flavor to use for the VM
 * `image` - The name of the image to use for the VM
 
-#### Floating IPs
+### Gmail credentials  
 
-* `floating_ip` - The floating IP to associate with the VM. This IP must be formerly allocated.
-
-#### Networks
-
-* `networks` - Network list the server must be connected on. Can be omitted if only one private network exists
-  in the Openstack project
-
+In the Vagrantfile just replace 'mygmailaccount' and 'mypassword' with your actual credentials. Anjoy!
 
 

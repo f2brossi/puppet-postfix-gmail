@@ -38,6 +38,6 @@ vagrant will authenticate against the UK authentication endpoint.
 
 ### Gmail credentials  
 
-In the Vagrantfile just replace 'mygmailaccount' and 'mypassword' with your actual credentials. Anjoy!
+In the Vagrantfile just replace 'mygmailaccount' and 'mypassword' with your actual credentials. 
 
 
